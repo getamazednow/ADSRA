@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Personal context & internal house style — kept local, not published
+Instructions/about-me.md
+Instructions/style-guide.md
+
+# Proprietary brand design-system source — kept local
+Getamazednow AI Design System v1.0/
+
+# Scratch / temp
+*.tmp
+~$*
