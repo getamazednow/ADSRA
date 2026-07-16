@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADSRA — Australian Digital Sovereignty Reference Architecture</title>
-<meta name="description" content="ADSRA — a reference architecture treating digital sovereignty as a first-class enterprise architecture domain: seven pillars, a six-level maturity model, and telemetry-derived KRIs a Risk Committee can govern. Draft v0.1, by Duane.">
+<meta name="description" content="ADSRA — a reference architecture treating digital sovereignty as a first-class enterprise architecture domain: seven pillars, a six-level maturity model, and telemetry-derived KRIs a Risk Committee can govern. Draft v0.2, by Duane.">
 <meta name="author" content="Duane">
 <meta property="og:title" content="ADSRA — Sovereignty by Design">
 <meta property="og:description" content="Digital sovereignty as an enterprise architecture domain — seven pillars, six-level maturity, measurable KRIs.">
@@ -39,7 +39,7 @@
   section .lede{font-size:19px;color:var(--muted);max-width:760px;margin-bottom:40px}
   .pos{font-family:var(--sans);font-size:.72em;font-weight:700;color:var(--gold-deep);background:rgba(200,162,75,.14);border:1px solid rgba(200,162,75,.4);padding:1px 7px;border-radius:999px;vertical-align:middle;letter-spacing:.03em;white-space:nowrap}
 
-  /* GETAMAZEDNOW AI BRAND TOPBAR — from Getamazednow AI Design System v1.0 (tokens scoped to .topbar) */
+  /* GETAMAZEDNOW AI BRAND TOPBAR — from Getamazednow AI Design System v1.1 (tokens scoped to .topbar) */
   .topbar{
     --gai-ink:#2A363B;--gai-signal:#5FA8CC;--gai-signal-core:#8FC3DE;--gai-stone:#A8A17B;
     --gai-neutral-800:#2C3234;--gai-neutral-700:#3F474A;--gai-neutral-50:#F6F7F7;--gai-neutral-300:#B7BEC2;
@@ -243,7 +243,7 @@
     </div>
   </div>
   <div class="topbar-right">
-    <span class="pill pill-live">Draft v0.1 · For peer review</span>
+    <span class="pill pill-live">Draft v0.2 · For peer review</span>
     <span class="pill">July 2026</span>
   </div>
 </header>
@@ -274,10 +274,10 @@
       <div class="q"><b>Sovereignty asks</b><p>Who can be compelled to hand it over — and what could they actually produce?</p></div>
     </div>
     <div class="meta">
-      <span class="chip gold">Draft v0.1 · For peer review</span>
+      <span class="chip gold">Draft v0.2 · For peer review</span>
       <span class="chip">By Duane · Enterprise Architect</span>
       <span class="chip">July 2026</span>
-      <span class="chip">Financial services · Banking · Retail · Healthcare</span>
+      <span class="chip">Financial services · Banking · Retail · Healthcare · Utilities · Education</span>
     </div>
   </div>
 </section>
@@ -321,7 +321,7 @@
       <div class="ev">
         <div class="d">2025–26</div>
         <div class="t">AI policy consolidates</div>
-        <p>Guidance for AI Adoption (Oct 2025) supersedes the Voluntary AI Safety Standard; the National AI Plan (Dec 2025) relies on existing law plus an AI Safety Institute — no standalone AI Act.</p>
+        <p>Guidance for AI Adoption (Oct 2025) supersedes the Voluntary AI Safety Standard; the National AI Plan (Dec 2025) relies on existing law plus an AI Safety Institute — no standalone AI Act. The National framework for the assurance of AI in government (2024) sets a principles-based assurance expectation, binding on public agencies and a benchmark for regulated industry.</p>
         <span class="flag">→ Evidence under existing law</span>
       </div>
     </div>
@@ -361,8 +361,8 @@
       <div class="pillar"><div class="num">2</div><h3>Identity</h3><div class="qn">Who is acting, from where, and with what privilege?</div><p>Australian-controlled IdP, Zero Trust conditional access, just-in-time elevation, session recording. Standing privilege extinct.</p></div>
       <div class="pillar"><div class="num">3</div><h3>Cryptographic</h3><div class="qn">Who controls the keys that control trust?</div><p>Customer-managed keys, HSM-backed roots of trust, and — surgically — hold-your-own-key. Encryption is the last defence, if you hold the keys.</p></div>
       <div class="pillar"><div class="num">4</div><h3>Operational</h3><div class="qn">Who administers production — and from which jurisdiction?</div><p>Australian operations and SOC, provider-access approval workflows, jurisdiction-aware break-glass, exit plans actually tested.</p></div>
-      <div class="pillar"><div class="num">5</div><h3>AI</h3><div class="qn">Where do prompts, embeddings, inference and training occur?</div><p>Prompt gateway, policy engine, PII detection, governed RAG, model registry, output validation — the model never talks directly to users.</p></div>
-      <div class="pillar"><div class="num">6</div><h3>Governance</h3><div class="qn">Is compliance enforced by the platform, or a policy PDF?</div><p>Policy-as-code, pipeline gates that fail closed for critical tiers, auto-expiring exceptions. Every deployment inherits compliance.</p></div>
+      <div class="pillar"><div class="num">5</div><h3>AI</h3><div class="qn">Where do prompts, embeddings, inference and training occur — and who governs the outputs?</div><p>Prompt gateway, policy engine, PII detection, governed RAG, model registry, output validation — the model never talks directly to users. Plus decision assurance for AI-influenced decisions: impact assessment, explainability, contestability and human oversight.</p></div>
+      <div class="pillar"><div class="num">6</div><h3>Governance</h3><div class="qn">Is compliance enforced by the platform, or a policy PDF?</div><p>Policy-as-code, pipeline gates that fail closed for critical tiers, auto-expiring exceptions. Every deployment inherits compliance — aligned to AS ISO/IEC 42001 and the national AI-assurance framework.</p></div>
       <div class="pillar" style="grid-column:auto"><div class="num">7</div><h3>Observability</h3><div class="qn">Can we prove, audit and continuously measure sovereignty?</div><p>The underdeveloped pillar — and the highest-leverage investment. A control without evidence is treated as absent. <span class="pos">Position</span></p></div>
     </div>
   </div>
@@ -388,6 +388,7 @@
     </div>
     <div class="audit"><b>Immutable audit &amp; AI observability</b> — prompts, retrievals, model versions, decisions, tokens, cost, and the <b>jurisdiction of inference</b> for every request.</div>
     <p class="divider-note">Overhead versus a raw model call: tens of milliseconds. Value: the use case becomes <em>approvable</em>. <span class="pos">Position</span></p>
+    <p class="divider-note" style="margin-top:10px">The model registry may point at a global frontier model <em>or</em> an Australian-owned sovereign model on onshore compute — building sovereign models is a supply-side effort; ADSRA is the demand-side complement that governs and measures how any model is consumed. Beyond residency, the flow now evidences <b>decision assurance</b>: an algorithmic/impact assessment, explainability and a contestability path for decisions that significantly affect individuals — the same axis the 10 Dec 2026 ADM-transparency obligation makes a hard constraint. <span class="pos">Position</span></p>
   </div>
 </section>
 
@@ -443,7 +444,7 @@
         <h3>▼ The cost side</h3>
         <ul>
           <li><b>Sovereign controls tax capability.</b> HYOK and client-side encryption break real native cloud features — apply surgically, not universally.</li>
-          <li><b>In-region AI lags the frontier.</b> Australian-region model availability trails global releases, sometimes by a capability generation.</li>
+          <li><b>In-region AI lags the frontier.</b> Australian-region model availability trails global releases, sometimes by a capability generation — though Australian-owned sovereign model and compute options are beginning to narrow the gap. <span class="pos">Position</span></li>
           <li><b>Over-classification is self-harm.</b> Default everything to Critical and you tax low-risk workloads and teach the organisation to route around the scheme.</li>
           <li><b>Skills are scarce.</b> Policy-as-code, key custody and AI governance are thin markets — and thinning as CPS 230 programs compete.</li>
         </ul>
@@ -503,7 +504,7 @@
     </div>
     <div class="cta">
       <h3>Please break it.</h3>
-      <p>Where I most want challenge: the tier boundaries, the HYOK guidance, the Level 6 governance question, the technology mappings, and the missing utilities and education blueprints. Cite the instrument, name the workload, bring the counter-example.</p>
+      <p>Where I most want challenge: the tier boundaries, the HYOK guidance, the Level 6 governance question, the technology mappings, and the new utilities and education blueprints — the regulation-heavy public-adjacent sectors where this architecture earns its keep. Cite the instrument, name the workload, bring the counter-example.</p>
       <a class="btn" href="#top">Read the seven questions ↑</a>
     </div>
   </div>
@@ -513,7 +514,7 @@
   <div class="wrap">
     <div>
       <b>ADSRA</b> — Australian Digital Sovereignty Reference Architecture<br>
-      <span class="v">Web summary · Draft v0.1 · For peer review · By Duane · July 2026</span>
+      <span class="v">Web summary · Draft v0.2 · For peer review · By Duane · July 2026</span>
       <div class="verify">All regulatory dates verified against primary sources as at 13 July 2026 (APRA, OAIC). Evidence register: Technical Reference §12. Author judgement marked [Position].</div>
     </div>
     <div class="v" style="text-align:right">
