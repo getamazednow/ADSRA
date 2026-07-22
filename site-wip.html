@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- WORK IN PROGRESS — not for public serving. Redirects to the front door.
+       To preview locally, comment out the meta refresh + redirect script below. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="refresh" content="0; url=/" />
+  <script>if(location.hostname!=="localhost"&&location.hostname!=="127.0.0.1"){location.replace("/");}</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Assure Govern — Getamazednow AI</title>
+<meta name="description" content="Assure Govern is the implementation of ADSRA — the Australian Digital Sovereignty Reference Architecture. Seven sovereignty pillars, twenty fundable capabilities, a six-level maturity model and telemetry-derived KRIs a Risk Committee can govern quarterly. Framework published and under peer review; product in development." />
+<link rel="icon" type="image/svg+xml" href="assets/Getamazednow-AI-Favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/Getamazednow-AI-Favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/Getamazednow-AI-Favicon-180.png" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+/* ── Getamazednow AI Design System v1.2 — tokens (consumed unchanged) ───────── */
+:root{
+  --gai-ink:#2A363B; --gai-signal:#5FA8CC; --gai-signal-deep:#2E7DA6;
+  --gai-signal-core:#8FC3DE; --gai-stone:#A8A17B; --gai-white:#FFFFFF;
+  --gai-neutral-50:#F6F7F7; --gai-neutral-100:#EBEDEE; --gai-neutral-200:#D5DADB;
+  --gai-neutral-300:#B7BEC2; --gai-neutral-400:#909CA1; --gai-neutral-500:#6B797E;
+  --gai-neutral-600:#545E63; --gai-neutral-700:#3F474A; --gai-neutral-800:#2C3234;
+  --gai-neutral-900:#1C1F21;
+  --gai-success:#2C6644; --gai-success-on-ink:#6FBF8B;
+  --gai-warning:#A85A16; --gai-warning-on-ink:#E3A253;
+  --gai-error:#A02E2E;   --gai-error-on-ink:#E08585;
+  --gai-info:#355F6D;    --gai-info-on-ink:#7FB3C2;
+  --gai-font-display:"Poppins","Montserrat","Segoe UI",sans-serif;
+  --gai-font-body:"Inter","Segoe UI",Roboto,sans-serif;
+  --gai-font-mono:"JetBrains Mono","Courier New",monospace;
+  --gai-radius-sm:4px; --gai-radius-md:8px; --gai-radius-lg:16px; --gai-radius-pill:999px;
+  --gai-shadow-md:0 4px 16px rgba(28,31,33,.12);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:60px;}
+body{margin:0;background:var(--gai-white);color:var(--gai-neutral-800);
+  font-family:var(--gai-font-body);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:var(--gai-signal-deep);}
+
+/* ── Topbar (spec §6) — the single identity ────────────────────────────────── */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:24px;
+  padding:14px 32px;background:var(--gai-ink);border-bottom:2px solid var(--gai-signal);}
+.topbar-left{display:flex;align-items:center;gap:16px;}
+.brand-logo{height:128px;width:128px;display:block;}
+.brand-title{font-family:var(--gai-font-display);font-weight:800;font-size:17px;
+  letter-spacing:.2px;color:var(--gai-white);}
+.brand-title .brand-name{color:var(--gai-signal);}
+.brand-sub{color:var(--gai-neutral-300);font-size:12.5px;margin-top:2px;}
+.brand-byline{color:var(--gai-stone);font-size:11px;letter-spacing:.6px;
+  text-transform:uppercase;margin-top:2px;}
+.topbar-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.pill{border:1px solid var(--gai-neutral-700);background:var(--gai-neutral-800);
+  color:var(--gai-neutral-300);padding:5px 12px;border-radius:var(--gai-radius-pill);
+  font-size:11.5px;font-weight:600;letter-spacing:.3px;white-space:nowrap;}
+.pill-mock{color:var(--gai-ink);background:var(--gai-warning-on-ink);border-color:var(--gai-warning-on-ink);}
+.pill-live{color:var(--gai-ink);background:var(--gai-success-on-ink);border-color:var(--gai-success-on-ink);}
+
+/* ── Section nav (no competing lockup) ─────────────────────────────────────── */
+.sectnav{position:sticky;top:0;z-index:20;background:rgba(246,247,247,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--gai-neutral-200);}
+.sectnav-inner{display:flex;gap:4px;overflow-x:auto;max-width:1180px;margin:0 auto;padding:0 24px;}
+.sectnav a{font-family:var(--gai-font-display);font-weight:600;font-size:12.5px;
+  color:var(--gai-neutral-600);text-decoration:none;padding:13px 12px;white-space:nowrap;
+  border-bottom:3px solid transparent;}
+.sectnav a:hover,.sectnav a.active{color:var(--gai-ink);border-bottom-color:var(--gai-signal);}
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+.hero{background:var(--gai-ink);color:var(--gai-white);position:relative;overflow:hidden;
+  padding:76px 0 0;}
+.hero::after{content:"";position:absolute;right:-140px;top:-120px;width:620px;height:620px;
+  background:radial-gradient(circle,rgba(95,168,204,.22) 0%,rgba(95,168,204,0) 62%);pointer-events:none;}
+.kicker{font-family:var(--gai-font-display);font-weight:600;font-size:12px;
+  letter-spacing:2.2px;text-transform:uppercase;color:var(--gai-signal);}
+.hero h1{font-family:var(--gai-font-display);font-weight:800;font-size:54px;line-height:1.08;
+  margin:18px 0 0;max-width:17ch;letter-spacing:-.5px;}
+.hero h1 em{font-style:italic;color:var(--gai-signal);}
+.hero p.lede{max-width:64ch;color:var(--gai-neutral-200);font-size:18px;margin:22px 0 0;}
+.statstrip{display:flex;flex-wrap:wrap;gap:0;margin:44px 0 0;border-top:1px solid rgba(255,255,255,.14);}
+.stat{flex:1 1 150px;padding:22px 26px 30px 0;}
+.stat .n{font-family:var(--gai-font-display);font-weight:800;font-size:34px;
+  color:var(--gai-white);line-height:1;}
+.stat .l{font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gai-stone);margin-top:8px;}
+
+/* ── Sections ──────────────────────────────────────────────────────────────── */
+section{padding:74px 0;}
+section.alt{background:var(--gai-neutral-50);border-top:1px solid var(--gai-neutral-100);
+  border-bottom:1px solid var(--gai-neutral-100);}
+section.ink{background:var(--gai-ink);color:var(--gai-neutral-100);}
+h2{font-family:var(--gai-font-display);font-weight:700;font-size:32px;line-height:1.2;
+  color:var(--gai-ink);margin:14px 0 0;letter-spacing:-.3px;}
+section.ink h2{color:var(--gai-white);}
+h2 em{font-style:italic;color:var(--gai-signal-deep);}
+section.ink h2 em{color:var(--gai-signal);}
+h2+p.sub{color:var(--gai-neutral-500);font-size:17px;max-width:76ch;margin:12px 0 0;}
+section.ink h2+p.sub{color:var(--gai-neutral-300);}
+h3{font-family:var(--gai-font-display);font-weight:600;font-size:17px;color:var(--gai-ink);margin:0 0 6px;}
+section.ink h3{color:var(--gai-white);}
+.mt{margin-top:38px;}
+
+/* ── Cards & grids ─────────────────────────────────────────────────────────── */
+.grid{display:grid;gap:18px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.card{background:var(--gai-white);border:1px solid var(--gai-neutral-200);
+  border-radius:var(--gai-radius-lg);padding:22px 24px;}
+section.alt .card{box-shadow:var(--gai-shadow-md);border-color:var(--gai-neutral-100);}
+section.ink .card{background:var(--gai-neutral-800);border-color:var(--gai-neutral-700);color:var(--gai-neutral-200);}
+.card p{margin:0;font-size:14.5px;color:var(--gai-neutral-600);}
+section.ink .card p{color:var(--gai-neutral-300);}
+.card .num{font-family:var(--gai-font-mono);font-size:12px;color:var(--gai-signal-deep);
+  letter-spacing:1px;display:block;margin-bottom:8px;}
+section.ink .card .num{color:var(--gai-signal);}
+.card .qn{font-family:var(--gai-font-display);font-style:italic;font-size:14px;
+  color:var(--gai-signal-deep);margin:0 0 10px;}
+section.ink .card .qn{color:var(--gai-signal);}
+
+.kpi{background:var(--gai-white);border:1px solid var(--gai-neutral-200);
+  border-left:3px solid var(--gai-signal-deep);border-radius:var(--gai-radius-md);padding:18px 20px;}
+.kpi .v{font-family:var(--gai-font-display);font-weight:800;font-size:27px;color:var(--gai-ink);line-height:1.1;}
+.kpi .k{font-size:11.5px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gai-neutral-500);margin-top:7px;}
+
+/* ── Tables ────────────────────────────────────────────────────────────────── */
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--gai-white);
+  border:1px solid var(--gai-neutral-200);border-radius:var(--gai-radius-md);overflow:hidden;}
+th{background:var(--gai-ink);color:var(--gai-white);font-family:var(--gai-font-display);
+  font-weight:600;font-size:12px;letter-spacing:.8px;text-transform:uppercase;
+  text-align:left;padding:12px 14px;}
+td{padding:12px 14px;border-top:1px solid var(--gai-neutral-100);
+  color:var(--gai-neutral-700);vertical-align:top;}
+tbody tr:nth-child(even){background:var(--gai-neutral-50);}
+code{font-family:var(--gai-font-mono);font-size:12.5px;background:var(--gai-neutral-100);
+  color:var(--gai-neutral-800);padding:1px 6px;border-radius:var(--gai-radius-sm);}
+section.ink code{background:rgba(255,255,255,.08);color:var(--gai-signal-core);}
+
+/* ── Tags / status ─────────────────────────────────────────────────────────── */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+.tag{font-size:12.5px;font-weight:500;padding:6px 13px;border-radius:var(--gai-radius-pill);
+  background:var(--gai-neutral-100);color:var(--gai-neutral-700);border:1px solid var(--gai-neutral-200);}
+.st{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--gai-radius-pill);
+  white-space:nowrap;display:inline-block;}
+.st-done{background:#E4F0E9;color:var(--gai-success);}
+.st-part{background:#F6E9DA;color:var(--gai-warning);}
+.st-no{background:var(--gai-neutral-100);color:var(--gai-neutral-600);}
+
+/* ── [Position] marker — author judgement, per house rule ──────────────────── */
+.pos{font-family:var(--gai-font-mono);font-size:10.5px;font-weight:500;letter-spacing:.6px;
+  text-transform:uppercase;padding:2px 7px;border-radius:var(--gai-radius-sm);
+  background:rgba(168,161,123,.18);color:#6E6845;border:1px solid rgba(168,161,123,.4);
+  white-space:nowrap;vertical-align:1px;}
+section.ink .pos{background:rgba(168,161,123,.22);color:var(--gai-stone);
+  border-color:rgba(168,161,123,.45);}
+
+/* ── Callout ───────────────────────────────────────────────────────────────── */
+.callout{border-left:3px solid var(--gai-signal-deep);background:var(--gai-neutral-50);
+  padding:18px 22px;border-radius:0 var(--gai-radius-md) var(--gai-radius-md) 0;
+  font-size:14.5px;color:var(--gai-neutral-700);margin-top:30px;}
+section.alt .callout{background:var(--gai-white);}
+section.ink .callout{background:var(--gai-neutral-800);color:var(--gai-neutral-200);
+  border-left-color:var(--gai-signal);}
+
+/* ── Two-layer band (ADSRA / Assure Govern) ────────────────────────────────── */
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px;}
+.lyr{border-radius:var(--gai-radius-lg);padding:26px 28px;border:1px solid var(--gai-neutral-700);
+  background:var(--gai-neutral-800);}
+.lyr .lbl{font-family:var(--gai-font-mono);font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--gai-neutral-400);}
+.lyr h3{font-size:22px;margin:10px 0 4px;}
+.lyr .state{font-size:12px;font-weight:600;letter-spacing:.4px;padding:3px 11px;
+  border-radius:var(--gai-radius-pill);display:inline-block;margin-bottom:14px;}
+.lyr-fw{border-left:3px solid var(--gai-success-on-ink);}
+.lyr-fw .state{background:rgba(111,191,139,.16);color:var(--gai-success-on-ink);}
+.lyr-pd{border-left:3px solid var(--gai-warning-on-ink);}
+.lyr-pd .state{background:rgba(227,162,83,.16);color:var(--gai-warning-on-ink);}
+.lyr p{font-size:14.5px;color:var(--gai-neutral-300);margin:0;}
+.lyr ul{margin:14px 0 0;padding:0;list-style:none;}
+.lyr li{font-size:14px;color:var(--gai-neutral-300);padding:8px 0;
+  border-top:1px solid var(--gai-neutral-700);}
+
+/* ── Stack diagram ─────────────────────────────────────────────────────────── */
+.stack{margin-top:36px;display:flex;flex-direction:column;gap:8px;}
+.slayer{display:flex;align-items:center;gap:20px;padding:16px 22px;border-radius:var(--gai-radius-md);
+  background:var(--gai-white);border:1px solid var(--gai-neutral-200);}
+.slayer .lab{font-family:var(--gai-font-display);font-weight:600;font-size:13px;
+  color:var(--gai-neutral-600);min-width:170px;letter-spacing:.3px;}
+.slayer .val{font-size:14px;color:var(--gai-neutral-600);}
+.slayer.sov{background:var(--gai-ink);border-color:var(--gai-signal-deep);border-left:3px solid var(--gai-signal);}
+.slayer.sov .lab{color:var(--gai-signal);} .slayer.sov .val{color:var(--gai-white);}
+.slayer.strat{background:var(--gai-neutral-100);}
+.sovtags{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;}
+.sovtags span{font-size:11.5px;color:var(--gai-neutral-300);border:1px solid var(--gai-neutral-700);
+  padding:3px 10px;border-radius:var(--gai-radius-pill);}
+
+/* ── Maturity stairs ───────────────────────────────────────────────────────── */
+.stairs{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:38px;align-items:end;}
+.step{background:var(--gai-white);border:1px solid var(--gai-neutral-200);
+  border-radius:var(--gai-radius-md);padding:16px 15px;border-top:3px solid var(--gai-neutral-300);}
+.step .lv{font-family:var(--gai-font-mono);font-size:11px;letter-spacing:1px;color:var(--gai-neutral-500);}
+.step h4{font-family:var(--gai-font-display);font-size:14px;color:var(--gai-ink);margin:7px 0 6px;}
+.step p{font-size:12.5px;color:var(--gai-neutral-600);margin:0;}
+.step.s1{min-height:150px;} .step.s2{min-height:166px;} .step.s3{min-height:182px;}
+.step.s4{min-height:198px;border-top-color:var(--gai-signal-deep);}
+.step.s5{min-height:214px;border-top-color:var(--gai-signal-deep);}
+.step.s6{min-height:230px;border-top-color:var(--gai-stone);background:var(--gai-neutral-50);}
+
+/* ── AI flow ───────────────────────────────────────────────────────────────── */
+.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin-top:22px;}
+.node{background:var(--gai-neutral-800);border:1px solid var(--gai-neutral-700);
+  border-radius:var(--gai-radius-md);padding:13px 15px;flex:1 1 120px;min-width:120px;}
+.node b{display:block;font-family:var(--gai-font-display);font-size:13px;color:var(--gai-white);}
+.node small{display:block;font-size:11.5px;color:var(--gai-neutral-400);margin-top:3px;}
+.node.ends{background:transparent;border-style:dashed;}
+.node.model{border-color:var(--gai-signal);background:rgba(95,168,204,.12);}
+.node.model b{color:var(--gai-signal);}
+.arrow{align-self:center;color:var(--gai-neutral-500);font-size:15px;}
+
+/* ── Risk / reward ─────────────────────────────────────────────────────────── */
+.rr h3{font-family:var(--gai-font-display);font-size:13px;letter-spacing:1.6px;
+  text-transform:uppercase;margin-bottom:14px;}
+.rr-reward h3{color:var(--gai-success-on-ink);}
+.rr-risk h3{color:var(--gai-warning-on-ink);}
+.rr ul{list-style:none;margin:0;padding:0;}
+.rr li{padding:11px 0;border-top:1px solid var(--gai-neutral-700);font-size:14.5px;
+  color:var(--gai-neutral-300);}
+.rr li b{color:var(--gai-white);font-weight:600;}
+
+/* ── Timeline ──────────────────────────────────────────────────────────────── */
+.clock{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.ev{background:var(--gai-white);border:1px solid var(--gai-neutral-200);
+  border-radius:var(--gai-radius-md);padding:18px 20px;border-top:3px solid var(--gai-neutral-300);}
+.ev.next{border-top-color:var(--gai-warning);}
+.ev.past{border-top-color:var(--gai-success);}
+.ev .d{font-family:var(--gai-font-mono);font-size:11.5px;letter-spacing:.8px;color:var(--gai-neutral-500);}
+.ev .t{font-family:var(--gai-font-display);font-weight:600;font-size:15px;
+  color:var(--gai-ink);margin:6px 0 8px;}
+.ev p{font-size:13.5px;color:var(--gai-neutral-600);margin:0 0 12px;}
+.ev .flag{font-size:11.5px;font-weight:600;letter-spacing:.3px;}
+.ev.past .flag{color:var(--gai-success);} .ev.next .flag{color:var(--gai-warning);}
+
+/* ── CTA ───────────────────────────────────────────────────────────────────── */
+.btn{display:inline-block;font-family:var(--gai-font-display);font-weight:600;font-size:14px;
+  padding:13px 26px;border-radius:var(--gai-radius-pill);text-decoration:none;
+  background:var(--gai-signal);color:var(--gai-ink);border:1px solid var(--gai-signal);}
+.btn:hover{background:var(--gai-signal-core);border-color:var(--gai-signal-core);}
+.btn-ghost{background:transparent;color:var(--gai-signal);}
+.btn-ghost:hover{background:rgba(95,168,204,.12);color:var(--gai-signal-core);}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
+
+/* ── Footer (running identity) ─────────────────────────────────────────────── */
+footer{background:var(--gai-neutral-900);color:var(--gai-neutral-400);padding:44px 0 52px;
+  border-top:2px solid var(--gai-signal);}
+.foot-kicker{font-family:var(--gai-font-mono);font-size:11px;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--gai-neutral-500);}
+.foot-id{display:flex;align-items:center;gap:12px;margin-top:22px;}
+.foot-id img{height:38px;width:38px;border-radius:50%;display:block;
+  border:1px solid var(--gai-neutral-700);}
+.foot-id .n{font-family:var(--gai-font-display);font-weight:700;font-size:14.5px;color:var(--gai-white);}
+.foot-id .b{font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--gai-stone);}
+.foot-tag{margin-top:20px;font-size:13px;color:var(--gai-neutral-500);}
+.foot-tag a{color:var(--gai-signal);text-decoration:none;}
+.foot-verify{margin-top:18px;font-size:12px;color:var(--gai-neutral-500);max-width:80ch;}
+.foot-suite{margin-top:12px;font-family:var(--gai-font-display);font-size:13px;font-weight:600;
+  color:var(--gai-neutral-500);}
+.foot-suite a{color:var(--gai-signal);text-decoration:none;}
+.foot-suite span{color:var(--gai-white);}
+
+@media (max-width:1000px){
+  .g4{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(2,1fr);}
+  .hero h1{font-size:40px;} .stairs{grid-template-columns:repeat(3,1fr);}
+  .step{min-height:auto!important;} .clock{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:680px){
+  .wrap{padding:0 20px;} .topbar{flex-direction:column;align-items:flex-start;}
+  .brand-logo{height:88px;width:88px;}
+  .g2,.g3,.g4,.layers{grid-template-columns:1fr;} .hero h1{font-size:32px;}
+  .stairs,.clock{grid-template-columns:1fr;} section{padding:52px 0;} h2{font-size:25px;}
+  .slayer{flex-direction:column;align-items:flex-start;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR — single brand identity (spec §6) ══ -->
+<header class="topbar">
+  <!-- WORK IN PROGRESS — not for public serving. Redirects to the front door.
+       To preview locally, comment out the meta refresh + redirect script below. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="refresh" content="0; url=/" />
+  <script>if(location.hostname!=="localhost"&&location.hostname!=="127.0.0.1"){location.replace("/");}</script>
+  <div class="topbar-left">
+    <img class="brand-logo" src="assets/Getamazednow-AI-Icon-Color.svg" alt="Getamazednow AI — Tensor Node Lattice mark" />
+    <div>
+      <div class="brand-title"><span class="brand-name">Getamazednow AI</span> · Assure Govern</div>
+      <div class="brand-sub">Prove it — the governance plane of Getamazednow Assure, built on ADSRA</div>
+      <div class="brand-byline">A Getamazednow Company</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <span class="pill pill-live">ADSRA v0.2 · Peer review open</span>
+    <span class="pill pill-mock">PRODUCT VISION · FY27</span>
+  </div>
+</header>
+
+<nav class="sectnav">
+  <div class="sectnav-inner">
+    <a href="#why">The gap</a>
+    <a href="#suite">The suite</a>
+    <a href="#twolayer">Framework &amp; product</a>
+    <a href="#pillars">Seven pillars</a>
+    <a href="#model">Control layer</a>
+    <a href="#ai">AI sovereignty</a>
+    <a href="#maturity">Maturity</a>
+    <a href="#kris">What gets measured</a>
+    <a href="#riskreward">Risk &amp; reward</a>
+    <a href="#roadmap">Investment path</a>
+    <a href="#pack">The pack</a>
+    <a href="#engage">Work with us</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="wrap" style="position:relative;">
+    <div class="kicker">Digital Sovereignty · Reference Architecture &amp; Implementation</div>
+    <h1>Your data is in Sydney. So why isn't it <em>sovereign?</em></h1>
+    <p class="lede">Residency asks where the data is stored. Sovereignty asks who can be compelled to hand it over — and what they could actually produce. <b>ADSRA</b> is the reference architecture that answers the second question: seven control pillars, twenty fundable capabilities, a six-level maturity model, and KRIs computed from telemetry rather than attested in a questionnaire. <b>Assure Govern</b> is its implementation.</p>
+    <div class="statstrip">
+      <div class="stat"><div class="n">7</div><div class="l">Sovereignty pillars</div></div>
+      <div class="stat"><div class="n">20</div><div class="l">Fundable capabilities</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Maturity levels</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Telemetry-derived KRIs</div></div>
+      <div class="stat"><div class="n">36</div><div class="l">Months to Level 4–5</div></div>
+    </div>
+    <div class="btnrow" style="padding-bottom:60px;">
+      <a class="btn" href="#pack">Read the v0.2 pack</a>
+      <a class="btn btn-ghost" href="#twolayer">How Assure Govern fits</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ THE GAP ══ -->
+<section id="why">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">Why this exists</div>
+    <h2>No instrument requires "sovereignty" by name</h2>
+    <p class="sub">The obligation emerges from the intersection of several — which is precisely why it keeps falling between organisational cracks. Legal owns the contract, Security owns the controls, Architecture owns the platform, and nobody owns the question a regulator will actually ask.</p>
+    <div class="clock">
+      <div class="ev past">
+        <div class="d">1 JUL 2025</div>
+        <div class="t">APRA CPS 230 in force</div>
+        <p>Critical operations, board-approved tolerance levels, material service provider registers, and a 24-hour notification clock for tolerance-breaching disruptions.</p>
+        <span class="flag">✓ In force</span>
+      </div>
+      <div class="ev past">
+        <div class="d">JUN 2025</div>
+        <div class="t">Privacy statutory tort live</div>
+        <p>A statutory tort for serious invasions of privacy, atop the 2022 penalty uplift: the greater of $50m, 3× the benefit, or 30% of adjusted turnover.</p>
+        <span class="flag">✓ Live</span>
+      </div>
+      <div class="ev past">
+        <div class="d">1 JUL 2026</div>
+        <div class="t">Provider-contract transition ends</div>
+        <p>Pre-existing provider contracts captured by the earlier of renewal or 1 Jul 2026. CPS 230 targeted amendments for certain non-traditional service providers took effect the same day.</p>
+        <span class="flag">✓ Deadline passed</span>
+      </div>
+      <div class="ev next">
+        <div class="d">10 DEC 2026</div>
+        <div class="t">Automated-decision transparency</div>
+        <p>Privacy policies must disclose substantially automated decisions that significantly affect individuals (APP 1.7–1.9) — a direct constraint on AI architecture, and the nearest hard deadline on this page.</p>
+        <span class="flag">⏳ Forthcoming</span>
+      </div>
+      <div class="ev">
+        <div class="d">2025–26</div>
+        <div class="t">AI policy consolidates</div>
+        <p>Guidance for AI Adoption (Oct 2025) supersedes the Voluntary AI Safety Standard; the National AI Plan (Dec 2025) relies on existing law plus an AI Safety Institute — no standalone AI Act.</p>
+        <span class="flag">→ Evidence under existing law</span>
+      </div>
+      <div class="ev">
+        <div class="d">STANDING</div>
+        <div class="t">US CLOUD Act (2018)</div>
+        <p>Can compel US-headquartered providers to produce data regardless of where it is stored. This is the single fact that makes residency and sovereignty different words.</p>
+        <span class="flag">→ Extraterritorial reach</span>
+      </div>
+    </div>
+    <div class="callout"><b>All regulatory dates on this page are verified against primary sources</b> (APRA, OAIC) as at 13 July 2026 and recorded in the evidence register at Technical Reference §12. Author judgement — as distinct from sourced obligation — is marked <span class="pos">Position</span> throughout.</div>
+  </div>
+</section>
+
+<!-- ══ THE SUITE ══ -->
+<section id="suite" class="alt">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">Where this sits</div>
+    <h2>One assurance layer, three planes — Assure Govern is <em>prove it</em></h2>
+    <p class="sub">Getamazednow Assure rides the estate you already run. The three planes are sequential by design, not a bundle: each one is the precondition for the next, and skipping a step produces the failure mode named underneath it.</p>
+    <div class="grid g3 mt">
+      <div class="card"><span class="num">SEE IT · PLANE 01</span><h3>Assure Observe</h3><p>Telemetry across the agent lifecycle — cost, latency, accuracy, drift, decision lineage, correlated by trace. Risk, finance and engineering read the same numbers.</p><p style="margin-top:14px"><a href="https://observability.getamazednow.ai/">Product vision →</a> · <a href="https://observability.getamazednow.ai/demo/">Demo →</a></p></div>
+      <div class="card" style="border-left:3px solid var(--gai-signal-deep);"><span class="num">PROVE IT · PLANE 02 · THIS PAGE</span><h3>Assure Govern</h3><p>Policy expressed as executable controls over that telemetry, mapped to APRA CPS 230/234, SOCI and ISO/IEC 42001 — and, through ADSRA, to sovereignty. Evidence generated continuously, not assembled quarterly.</p><p style="margin-top:14px"><a href="#twolayer">How it is built →</a></p></div>
+      <div class="card"><span class="num">STAND BEHIND IT · PLANE 03</span><h3>Assure Architect Vision</h3><p>Capability maps, application portfolios and technology roadmaps maintained by an agent mesh against the live estate — the long-horizon view, built once the assurance layer has earned its place.</p><p style="margin-top:14px"><a href="https://mesh.getamazednow.ai">Product vision →</a></p></div>
+    </div>
+    <div class="callout"><b>The dependency is the whole argument.</b> Every KRI further down this page is a computation over telemetry — which means <b>Assure Observe is not adjacent to Assure Govern, it is underneath it</b>. Governance without instrumentation produces attestation; instrumentation without governance produces dashboards nobody is accountable for. The reason this suite is three products rather than one is that most enterprises already own the failure at a different layer, and need to buy in at the layer where they are actually broken. <span class="pos">Position</span></div>
+    <div class="grid g2 mt">
+      <div class="card"><h3>Pillar 7 is where the two products meet</h3><p>ADSRA's seventh pillar — Observability — asks whether sovereignty can be proved, audited and continuously measured. It is the least mature pillar in the market and the highest-leverage investment available. <b>Assure Observe is the implementation of that pillar.</b> The sovereignty KRIs are simply a governed reading of the telemetry it emits.</p></div>
+      <div class="card"><h3>Integration surfaces, never competitors</h3><p>Microsoft Agent 365, ServiceNow AI Control Tower and Datadog run the agents and hold the signals. Assure does not replace them — it turns their telemetry into committee-grade evidence mapped to the instruments a regulator names. The evidence is the product.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TWO LAYERS ══ -->
+<section id="twolayer" class="ink">
+  <div class="wrap">
+    <div class="kicker">How this is structured</div>
+    <h2>An open framework, and the product that <em>implements</em> it</h2>
+    <p class="sub">These are two different things with two different jobs, two different licences and two different states of readiness. Conflating them would be the fastest way to make both less credible, so they are stated separately.</p>
+    <div class="layers">
+      <div class="lyr lyr-fw">
+        <div class="lbl">Layer 1 · The framework</div>
+        <h3>ADSRA</h3>
+        <div class="state">PUBLISHED · v0.2 · PEER REVIEW OPEN</div>
+        <p>The Australian Digital Sovereignty Reference Architecture. Open, citable, vendor-neutral and licensed CC BY-NC 4.0 — deliberately published as a draft so it can be argued with. TOGAF, SABSA and the Essential Eight all got better by being attacked.</p>
+        <ul>
+          <li>Seven pillars with stable control-objective IDs</li>
+          <li>Indicative AWS / Azure / GCP mappings</li>
+          <li>Six-level maturity model and capability set</li>
+          <li>Evidence register anchoring every regulatory claim</li>
+        </ul>
+      </div>
+      <div class="lyr lyr-pd">
+        <div class="lbl">Layer 2 · The implementation</div>
+        <h3>Assure Govern</h3>
+        <div class="state">PRODUCT VISION · FY27 VALIDATION YEAR</div>
+        <p>The governance plane of Getamazednow Assure. It turns the framework into a running control plane — classification, policy-as-code enforcement, and continuous KRI computation over the telemetry Assure Observe emits.</p>
+        <ul>
+          <li>Sovereignty posture computed, not questionnaired</li>
+          <li>Policy-as-code gates that fail closed on Critical tiers</li>
+          <li>KRIs to Architecture Board and Risk Committee</li>
+          <li>Assessment and pilot engagements available now</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><b>Deliberately in this order.</b> The framework earns adopters first; the product implements what adopters converge on. Building the tooling ahead of that consensus would encode one organisation's opinion as everyone's architecture — which is the failure mode of most governance products currently on the market. <span class="pos">Position</span></div>
+  </div>
+</section>
+
+<!-- ══ SEVEN PILLARS ══ -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">The control surface</div>
+    <h2>Seven questions every board should be able to answer</h2>
+    <p class="sub">Each pillar is specified with control objectives (stable IDs engineering can build against), a reference pattern, indicative hyperscaler mappings, and the KRIs that evidence it. A board can fund, measure and govern a pillar — it cannot fund a vibe.</p>
+    <div class="grid g3 mt">
+      <div class="card"><span class="num">PILLAR 01</span><h3>Data</h3><div class="qn">Who can legally compel access to our information?</div><p>Classification with sovereignty tiers, residency and cross-border controls, tokenisation, DLP, and privacy assessment embedded in delivery rather than bolted on at the end.</p></div>
+      <div class="card"><span class="num">PILLAR 02</span><h3>Identity</h3><div class="qn">Who is acting, from where, and with what privilege?</div><p>Australian-controlled IdP, Zero Trust conditional access, just-in-time elevation, session recording. Standing privilege extinct.</p></div>
+      <div class="card"><span class="num">PILLAR 03</span><h3>Cryptographic</h3><div class="qn">Who controls the keys that control trust?</div><p>Customer-managed keys, HSM-backed roots of trust, and — surgically — hold-your-own-key. Encryption is the last defence, but only if you hold the keys.</p></div>
+      <div class="card"><span class="num">PILLAR 04</span><h3>Operational</h3><div class="qn">Who administers production — and from which jurisdiction?</div><p>Australian operations and SOC, provider-access approval workflows, jurisdiction-aware break-glass, and exit plans that have actually been tested.</p></div>
+      <div class="card"><span class="num">PILLAR 05</span><h3>AI</h3><div class="qn">Where do inference and training occur — and who governs the outputs?</div><p>Prompt gateway, policy engine, PII detection, governed RAG, model registry, output validation. Plus decision assurance: impact assessment, explainability, contestability, human oversight.</p></div>
+      <div class="card"><span class="num">PILLAR 06</span><h3>Governance</h3><div class="qn">Is compliance enforced by the platform, or by a policy PDF?</div><p>Policy-as-code, pipeline gates that fail closed for critical tiers, auto-expiring exceptions. Aligned to AS ISO/IEC 42001 and the national AI-assurance framework.</p></div>
+      <div class="card" style="grid-column:span 2;border-left:3px solid var(--gai-stone);"><span class="num">PILLAR 07 · THE UNDERDEVELOPED ONE</span><h3>Observability</h3><div class="qn">Can we prove, audit and continuously measure sovereignty?</div><p>The least mature pillar across the Australian market and the highest-leverage investment available — because a control without evidence is treated by a regulator as a control that is absent. This is also the pillar Assure Govern implements first. <span class="pos">Position</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTROL LAYER ══ -->
+<section id="model" class="alt">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">The organising idea</div>
+    <h2>Sovereignty sits <em>above</em> technology — not below it</h2>
+    <p class="sub">ADSRA does not start with technology. It places a sovereignty control layer between the enterprise's obligations and its platforms, so every workload inherits sovereignty controls rather than negotiating them one at a time.</p>
+    <div class="stack">
+      <div class="slayer strat"><span class="lab">Business strategy</span><span class="val">Value, measures, investment and returns</span></div>
+      <div class="slayer"><span class="lab">Obligations</span><span class="val">CPS 230 / CPS 234 · Privacy Act · SOCI · ISM · Hosting Certification Framework</span></div>
+      <div class="slayer sov">
+        <span class="lab">Sovereignty layer</span>
+        <span class="val" style="flex:1">
+          Data · Identity · Cryptographic · Operational · AI · Governance · Observability
+          <div class="sovtags"><span>Policy enforced by platform</span><span>Evidenced by telemetry</span><span>Governed like any capability</span></div>
+        </span>
+      </div>
+      <div class="slayer"><span class="lab">Enterprise platforms</span><span class="val">Applications · Integration · Data · AI · Analytics</span></div>
+      <div class="slayer"><span class="lab">Cloud &amp; infrastructure</span><span class="val">AWS · Azure · Google Cloud · Private cloud · SaaS</span></div>
+    </div>
+    <div class="callout"><b>Every workload below the line inherits the controls of the layer above it.</b> Exceptions are explicit, time-boxed and risk-accepted — which is the only mechanism that survives contact with a delivery schedule.</div>
+  </div>
+</section>
+
+<!-- ══ AI SOVEREIGNTY ══ -->
+<section id="ai" class="ink">
+  <div class="wrap">
+    <div class="kicker">Pillar 5 in practice</div>
+    <h2>The model is the <em>least</em> interesting part of your AI architecture</h2>
+    <p class="sub">What matters is everything wrapped around it — the difference between an AI use case your board can approve and one it can't. No user, application or agent ever addresses a model directly.</p>
+    <div class="flow">
+      <div class="node ends"><b>User</b><small>channel</small></div><div class="arrow">→</div>
+      <div class="node"><b>Prompt Gateway</b><small>authenticate</small></div><div class="arrow">→</div>
+      <div class="node"><b>Policy Engine</b><small>use-case check</small></div><div class="arrow">→</div>
+      <div class="node"><b>PII Detection</b><small>redact</small></div><div class="arrow">→</div>
+      <div class="node"><b>Enterprise RAG</b><small>governed corpus</small></div>
+    </div>
+    <div class="flow">
+      <div class="node model"><b>Approved Model</b><small>AU region</small></div><div class="arrow">←</div>
+      <div class="node"><b>LLM Gateway</b><small>+ model registry</small></div><div class="arrow">→</div>
+      <div class="node"><b>Response Validation</b><small>leakage check</small></div><div class="arrow">→</div>
+      <div class="node ends"><b>User</b><small>governed answer</small></div>
+    </div>
+    <div class="callout"><b>Immutable audit &amp; AI observability</b> — prompts, retrievals, model versions, decisions, tokens, cost, and the <b>jurisdiction of inference</b> captured for every request. Overhead versus a raw model call: tens of milliseconds. Value: the use case becomes <em>approvable</em>. <span class="pos">Position</span></div>
+    <div class="grid g2 mt">
+      <div class="card"><h3>Sovereign models are the supply side</h3><p>The model registry may point at a global frontier model <em>or</em> an Australian-owned sovereign model on onshore compute. Building those models is a supply-side national effort; ADSRA is the demand-side complement that governs and measures how any model is consumed.</p></div>
+      <div class="card"><h3>Decision assurance is the harder half</h3><p>Beyond residency, the flow evidences an algorithmic impact assessment, explainability and a contestability path for decisions that significantly affect individuals — the same axis the 10 Dec 2026 ADM-transparency obligation turns into a hard constraint.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MATURITY ══ -->
+<section id="maturity">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">The maturity model</div>
+    <h2>From cloud adoption to autonomous sovereignty</h2>
+    <p class="sub">Most Australian enterprises sit at Levels 2–3 today <span class="pos">Position</span>. ADSRA targets Levels 4–5 within roughly 36 months. Level 6 is the model's genuinely new contribution — and the one most open to challenge.</p>
+    <div class="stairs">
+      <div class="step s1"><div class="lv">LEVEL 1</div><h4>Cloud Adoption</h4><p>Workloads migrating; controls inherited ad hoc.</p></div>
+      <div class="step s2"><div class="lv">LEVEL 2</div><h4>Cloud Security</h4><p>Essential Eight hardening; MFA; SIEM in place.</p></div>
+      <div class="step s3"><div class="lv">LEVEL 3</div><h4>Cloud Governance</h4><p>Landing zones, tagging, policy governance.</p></div>
+      <div class="step s4"><div class="lv">LEVEL 4</div><h4>Digital Sovereignty</h4><p>Classification drives residency, keys and AU operations.</p></div>
+      <div class="step s5"><div class="lv">LEVEL 5</div><h4>AI Sovereignty</h4><p>All AI via gateway and registry; RAG governance; ADM readiness.</p></div>
+      <div class="step s6"><div class="lv">LEVEL 6</div><h4>Autonomous Sovereignty</h4><p>The platform assesses and remediates its own posture.</p></div>
+    </div>
+    <div class="callout"><b>Where the step change actually is.</b> At Levels 1–5, sovereignty is an audit question answered quarterly, by humans, from samples. At <b>Level 6</b> it becomes a continuously computed property of the platform — quarantine the workload, force the key rotation, fail inference back in-region — under human oversight proportionate to blast radius. Deliberately aspirational: pilots, not production, are the realistic 36-month target. <span class="pos">Position</span></div>
+  </div>
+</section>
+
+<!-- ══ KRIs ══ -->
+<section id="kris" class="alt">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">Business value, investment and returns</div>
+    <h2>Measures a Risk Committee can govern quarterly</h2>
+    <p class="sub">None of these is an attestation. All are computable from telemetry — which is the entire difference between claiming sovereignty and measuring it. Reported quarterly to the Architecture Board and Risk Committee against trend, target and tolerance.</p>
+    <div class="mt">
+      <table>
+        <thead><tr><th style="width:34%">Key risk indicator</th><th style="width:22%">Target</th><th style="width:44%">Why it earns a place on the dashboard</th></tr></thead>
+        <tbody>
+          <tr><td>High/Critical data under customer-managed keys</td><td><b>100%</b></td><td>Key custody is the control that determines what a compelled provider could actually produce</td></tr>
+          <tr><td>Privileged sessions administered from Australia, recorded</td><td><b>100%</b> for Critical</td><td>Operational sovereignty is where residency arguments most often quietly fail</td></tr>
+          <tr><td>AI inference executed in-region via the LLM gateway</td><td><b>100%</b> on High/Critical</td><td>Jurisdiction of inference is the AI-specific sovereignty question, and is rarely measured</td></tr>
+          <tr><td>First-time pass rate through policy-as-code gates</td><td><b>≥ 90%</b></td><td>A low rate means the policy is wrong or the platform is unusable — both are actionable</td></tr>
+          <tr><td>Mean time to detect cross-jurisdiction data movement</td><td><b>&lt; 1 hour</b> Critical</td><td>Detection latency is the honest proxy for whether the control is real or nominal</td></tr>
+          <tr><td>Recency of tested exit plans for material providers</td><td><b>≤ 12 months</b></td><td>CPS 230 expects tested substitution, not a documented intention to substitute</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>This table is the product specification — and the handoff between two products.</b> Each row is a computation over telemetry that <a href="https://observability.getamazednow.ai/">Assure Observe</a> emits and Assure Govern evaluates against a policy, a tier and a tolerance. Six numbers, computed continuously rather than assembled quarterly by hand. Everything else on this page is the architecture that makes them meaningful.</div>
+  </div>
+</section>
+
+<!-- ══ RISK & REWARD ══ -->
+<section id="riskreward" class="ink">
+  <div class="wrap">
+    <div class="kicker">An honest ledger</div>
+    <h2>Sovereignty is not free — both columns, stated plainly</h2>
+    <p class="sub">Architecture papers love benefits. Investment committees trust ledgers. The managed position is not maximal sovereignty — it is tiered sovereignty, consciously priced.</p>
+    <div class="grid g2 mt rr">
+      <div class="rr-reward">
+        <h3>Reward</h3>
+        <ul>
+          <li><b>Penalty and tort exposure avoided.</b> Privacy penalties reach the greater of $50m, 3× the benefit, or 30% of adjusted turnover; the statutory tort adds per-incident exposure on top.</li>
+          <li><b>Regulatory speed.</b> Pre-approved patterns collapse architecture and risk-approval cycle times — a new AI use case becomes a configuration review, not a first-principles debate.</li>
+          <li><b>Concentration risk made visible.</b> CPS 230 registers plus sovereignty KRIs quantify what Risk Committees previously accepted implicitly.</li>
+          <li><b>The licence to deploy AI at all.</b> Evidenced control is becoming the precondition for board approval of customer-facing AI, not a differentiator on top of it.</li>
+        </ul>
+      </div>
+      <div class="rr-risk">
+        <h3>Risk</h3>
+        <ul>
+          <li><b>Sovereign controls tax capability.</b> HYOK and client-side encryption break real native cloud features. Apply surgically, not universally.</li>
+          <li><b>In-region AI lags the frontier.</b> Australian-region model availability trails global releases, sometimes by a capability generation — though sovereign model and compute options are beginning to narrow the gap. <span class="pos">Position</span></li>
+          <li><b>Over-classification is self-harm.</b> Default everything to Critical and you tax low-risk workloads and teach the organisation to route around the scheme entirely.</li>
+          <li><b>Skills are scarce.</b> Policy-as-code, key custody and AI governance are thin markets — and thinning further as CPS 230 programmes compete for the same people.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><b>The managed position.</b> Four tiers (Low → Critical); the sovereignty premium spent only where obligations demand it; residual risk measured and accepted in the open. A national retailer runs its product catalogue on a global public CDN — no premium at all — because classification said it could. That is the architecture working, not the architecture being bypassed.</div>
+  </div>
+</section>
+
+<!-- ══ ROADMAP ══ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">Investment path</div>
+    <h2>Three horizons to Level 4–5</h2>
+    <p class="sub">Sovereignty priced as risk reduction, speed and trust — sequenced so investment tracks maturity rather than preceding it. Each horizon has an exit criterion an architecture board can actually test.</p>
+    <div class="mt">
+      <table>
+        <thead><tr><th style="width:17%">Horizon</th><th style="width:20%">Goal</th><th style="width:35%">What gets built</th><th style="width:28%">Exit criterion</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>0–6 months</b><br />Horizon 1</td>
+            <td>Foundations</td>
+            <td>Sovereignty classification of Critical/High data estates · baseline maturity assessment across 20 capabilities · LLM gateway and model registry for all AI pilots · sovereignty KRIs onto the Risk Committee dashboard</td>
+            <td>The Risk Committee sees six sovereignty numbers it did not have before, with a trend line</td>
+          </tr>
+          <tr>
+            <td><b>6–18 months</b><br />Horizon 2</td>
+            <td>Enforcement</td>
+            <td>CMK/HSM coverage for the Critical tier · policy-as-code gates in all pipelines · Australian operations and privileged session recording · RAG governance and PII detection in production AI · tested exit plans for material providers</td>
+            <td>A non-compliant deployment to a Critical-tier workload fails in the pipeline, not in an audit</td>
+          </tr>
+          <tr>
+            <td><b>18–36 months</b><br />Horizon 3</td>
+            <td>Assurance</td>
+            <td>Continuous sovereignty assurance (Level 5 → 6 pilots) · agentic compliance monitoring across clouds · sovereignty posture in the annual report and regulator engagement</td>
+            <td>Posture is computed continuously and can be produced on demand, not reconstructed on request</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>Sequencing note.</b> Horizon 1 is deliberately measurement-first. Enforcing controls you cannot yet measure produces confident non-compliance — the organisation believes the gate is working because nothing has failed, and nothing has failed because nothing is watching. <span class="pos">Position</span></div>
+  </div>
+</section>
+
+<!-- ══ THE PACK ══ -->
+<section id="pack" class="alt">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gai-signal-deep);">What's published</div>
+    <h2>The v0.2 pack — and an open invitation to break it</h2>
+    <p class="sub">Reference architectures earn authority through scar tissue, not polish. Every regulatory claim is anchored to a primary source in the Technical Reference evidence register; author judgement is marked <span class="pos">Position</span>. Licensed CC BY-NC 4.0.</p>
+    <div class="grid g4 mt">
+      <div class="card"><span class="num">DECK · 17 SLIDES</span><h3>Executive Briefing</h3><p>The board conversation: why now, the pillars, industry lenses, KRIs, three horizons, and the ask.</p><p style="margin-top:12px"><a href="artefacts/ADSRA_Executive_Briefing_v0.2.pdf">PDF</a> · <a href="artefacts/ADSRA_Executive_Briefing_v0.2.pptx">PPTX</a></p></div>
+      <div class="card"><span class="num">DOCUMENT · ~26 PP</span><h3>Technical Reference</h3><p>Control objectives with stable IDs, AWS/Azure/GCP mappings, the capability model, industry blueprints and the evidence register.</p><p style="margin-top:12px"><a href="artefacts/ADSRA_Technical_Reference_v0.2.pdf">PDF</a> · <a href="artefacts/ADSRA_Technical_Reference_v0.2.docx">DOCX</a></p></div>
+      <div class="card"><span class="num">NARRATIVE · ~4,500 WORDS</span><h3>White Paper</h3><p><em>Sovereignty by Design</em> — the argument that sovereignty is an architecture problem, not a compliance one.</p><p style="margin-top:12px"><a href="artefacts/ADSRA_White_Paper_v0.2.pdf">PDF</a> · <a href="artefacts/ADSRA_White_Paper_v0.2.docx">DOCX</a></p></div>
+      <div class="card"><span class="num">SERIES · 6 ARTICLES</span><h3>Article Series</h3><p>Publication-ready essays for serialisation — from the seven questions through to the open peer-review invitation.</p><p style="margin-top:12px"><a href="artefacts/ADSRA_Article_Series.md">Read the series</a></p></div>
+    </div>
+    <div class="callout" style="border-left-color:var(--gai-stone);">
+      <b>Please break it.</b> Where challenge is most wanted: the tier boundaries, the HYOK guidance, the Level 6 governance question, the technology mappings, and the utilities and education blueprints — the regulation-heavy public-adjacent sectors where this architecture earns its keep. Cite the instrument, name the workload, bring the counter-example.
+    </div>
+    <div class="btnrow">
+      <a class="btn" href="artefacts/ADSRA_Technical_Reference_v0.2.pdf">Technical Reference (PDF)</a>
+      <a class="btn btn-ghost" style="color:var(--gai-signal-deep);border-color:var(--gai-neutral-300);" href="artefacts/ADSRA_White_Paper_v0.2.pdf">White Paper</a>
+      <a class="btn btn-ghost" style="color:var(--gai-signal-deep);border-color:var(--gai-neutral-300);" href="artefacts/ADSRA_Executive_Briefing_v0.2.pdf">Executive Briefing</a>
+    </div>
+    <div class="tags" style="margin-top:34px;">
+      <span class="tag">Financial services</span><span class="tag">Banking</span><span class="tag">Retail</span>
+      <span class="tag">Healthcare</span><span class="tag">Utilities</span><span class="tag">Education</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ENGAGE ══ -->
+<section id="engage" class="ink">
+  <div class="wrap">
+    <div class="kicker">Working with us</div>
+    <h2>Three ways in — each step <em>earns</em> the next</h2>
+    <p class="sub">FY27 is our validation year. Every engagement is scoped to produce evidence you can take to your risk committee — and we can take to ours.</p>
+    <div class="grid g3 mt">
+      <div class="card"><span class="num">4–6 WEEKS</span><h3>ADSRA Sovereignty Maturity</h3><p>A scored baseline against the seven pillars and the six-level model, with the sovereignty KRIs mapped to the telemetry you already hold — and a board-ready findings pack.</p></div>
+      <div class="card"><span class="num">8–12 WEEKS</span><h3>Assurance Pilot</h3><p>Assessment plus the MVP deployed single-tenant or inside your environment — narrow data contract, redaction by default — ending in an APRA / ISO 42001 evidence pack your risk function reviews.</p></div>
+      <div class="card"><span class="num">THREE SEATS · FY27</span><h3>Design partnership</h3><p>A working seat inside the build: quarterly Design Council, assessment credits, and today's pricing locked for three years post-GA. Qualified, not queued.</p></div>
+    </div>
+    <div class="callout"><b>Built from decades inside the rooms where these decisions are made</b> — architecture boards, risk committees, commercial committees, across financial services, banking, retail, healthcare, education and utilities in India, Australia, the United States and South-East Asia. We build for the people accountable for the estate, not for the demo.</div>
+    <div class="btnrow">
+      <a class="btn" href="mailto:duane@getamazednow.ai">Start a conversation</a>
+      <a class="btn btn-ghost" href="https://www.getamazednow.ai/#platform">See the full platform</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/duanegomes/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER — running identity ══ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-kicker">Getamazednow Assure · see it, prove it, stand behind it — Assure Govern · built on ADSRA v0.2 · draft for peer review</div>
+    <div class="foot-suite"><a href="https://observability.getamazednow.ai/">Assure Observe</a> · <span>Assure Govern</span> · <a href="https://mesh.getamazednow.ai">Assure Architect Vision</a> · <a href="https://skills.getamazednow.ai">Claude Skills</a></div>
+    <div class="foot-id">
+      <img src="assets/Getamazednow-AI-Favicon.svg" alt="Getamazednow AI" />
+      <div>
+        <div class="n">Getamazednow AI</div>
+        <div class="b">A Getamazednow Company</div>
+      </div>
+    </div>
+    <div class="foot-verify">All regulatory dates verified against primary sources (APRA, OAIC) as at 13 July 2026. Evidence register: Technical Reference §12. Author judgement marked <span class="pos">Position</span>. ADSRA © 2026 Duane, licensed <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>. Assure Govern is the governance plane of the Getamazednow Assure suite, in development through the FY27 validation year; assessment and pilot engagements are available now.</div>
+    <div class="foot-tag">Practical AI. Possible Futures. — <a href="https://www.getamazednow.ai">getamazednow.ai</a> &nbsp;·&nbsp;
+      <a href="https://www.getamazednow.ai/trust.html">Trust &amp; Security</a> ·
+      <a href="https://www.getamazednow.ai/privacy.html">Privacy</a> ·
+      <a href="https://github.com/getamazednow/ADSRA">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/duanegomes/">LinkedIn</a>
+      &nbsp;·&nbsp; #DigitalSovereignty · #EnterpriseArchitecture · #ADSRA</div>
+  </div>
+</footer>
+
+<script>
+  const links=[...document.querySelectorAll('.sectnav a')];
+  const map=links.map(a=>({a,s:document.querySelector(a.getAttribute('href'))})).filter(x=>x.s);
+  const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id='#'+e.target.id;
+    links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id))}})},{rootMargin:'-45% 0px -50% 0px'});
+  map.forEach(x=>spy.observe(x.s));
+</script>
+</body>
+</html>
